@@ -163,8 +163,10 @@ class Game extends React.Component {
     const { results, qIndex, answers, ativar, timeLeft, disabled } = this.state;
     return (
       <div className="game-container">
-        <Header />
-        { results.length ? <h1>{ timeLeft }</h1> : <h3>Loading...</h3> }
+        <div className="header">
+          <Header />
+          { results.length ? <h1>{ timeLeft }</h1> : <h3>Loading...</h3> }
+        </div>
         { results.length ? (
           <div className="qa-container">
             <h2

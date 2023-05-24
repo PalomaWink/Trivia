@@ -10,14 +10,12 @@
   border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   box-shadow: 0 0 60px rgba(8, 7, 16, 0.6);
-  height: 550px;
   left: 50%;
   margin-top: 30px;
   padding: 50px 35px;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
 }
 
 input {
