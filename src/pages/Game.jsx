@@ -166,7 +166,7 @@ class Game extends React.Component {
         <Header />
         { results.length ? <h1>{ timeLeft }</h1> : <h3>Loading...</h3> }
         { results.length ? (
-          <div>
+          <div className="qa-container">
             <h2
               data-testid="question-category"
               className="game-category"

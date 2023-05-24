@@ -5,7 +5,7 @@
   border-radius: 10px;
   box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
   color: white;
-  height: 450px;
+  height: 465px;
   left: 50%;
   padding: 50px 35px;
   position: absolute;
@@ -23,6 +23,14 @@
   color: white;
 }
 
+.qa-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: fit-content;
+}
+
 .game-category, .game-question {
   margin-bottom: 10px;
   text-align: center;
@@ -32,8 +40,8 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 300px;
-  margin-bottom: 0;
+  margin-top: 10px;
+  max-height: 300px;
 }
 
 button {
@@ -56,16 +64,16 @@ button {
   line-height: 1;
   list-style: none;
   margin-top: 13px;
+  min-width: 100px;
   overflow: hidden;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding: 10px 20px;
   position: relative;
-  text-align: left;
+  text-align: center;
   touch-action: manipulation;
   transition: box-shadow 0.15s , transform 0.15s;
   user-select: none;
-  white-space: wrap;
-  width: 60%;
+  white-space: nowrap;
+  width: 100%;
   will-change: box-shadow , transform;
 }
 
@@ -89,5 +97,6 @@ button:active {
   color: white;
   font-weight: 600;
   height: 40px;
+  margin-top: 20px;
   width: 20%;
 }
