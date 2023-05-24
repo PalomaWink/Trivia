@@ -39,9 +39,9 @@ input {
 }
 
 .white {
-  background-color: white;
+  background-color: rgb(105, 36, 170);
   border-radius: 5px;
-  color: #080710;
+  color: white;
   cursor: pointer;
   font-size: 18px;
   font-weight: 600;
