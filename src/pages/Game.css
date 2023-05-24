@@ -47,7 +47,6 @@
 }
 
 button {
-  align-items: center;
   appearance: none;
   border-radius: 4px;
   border-width: 0;
@@ -56,12 +55,10 @@ button {
   box-sizing: border-box;
   color: #1f2133;
   cursor: pointer;
-  display: inline-flex;
   font-family: monospace;
   font-size: 18px;
   font-weight: 600;
   height: 48px;
-  justify-content: center;
   line-height: 1;
   list-style: none;
   margin-top: 13px;
@@ -72,11 +69,12 @@ button {
   touch-action: manipulation;
   transition: box-shadow 0.15s , transform 0.15s;
   user-select: none;
-  white-space: nowrap;
+  white-space: normal;
   will-change: box-shadow , transform;
 }
 
 .answers-container > button {
+  max-height: 60px;
   min-width: 200px;
 }
 
