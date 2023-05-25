@@ -6,9 +6,8 @@ import './Feedback.css';
 
 class Feedback extends Component {
   reset = () => {
-    const { history, dispatch } = this.props;
+    const { history } = this.props;
     history.push('/ranking');
-    dispatch(getScore(0));
   };
 
   render() {
@@ -43,7 +42,6 @@ class Feedback extends Component {
 Feedback.propTypes = {
   assertions: PropTypes.number.isRequired,
   score: PropTypes.number.isRequired,
-  dispatch: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
