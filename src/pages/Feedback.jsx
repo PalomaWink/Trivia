@@ -21,20 +21,22 @@ class Feedback extends Component {
         <span data-testid="feedback-text">{message}</span>
         <p data-testid="feedback-total-score">{score}</p>
         <p data-testid="feedback-total-question">{assertions}</p>
-        <button
-          type="button"
-          data-testid="btn-play-again"
-          onClick={ this.reset }
-        >
-          Play again
-        </button>
-        <button
-          type="button"
-          data-testid="btn-ranking"
-          onClick={ () => history.push('/ranking') }
-        >
-          Ranking
-        </button>
+        <div className="btn-container">
+          <button
+            type="button"
+            data-testid="btn-play-again"
+            onClick={ this.reset }
+          >
+            Play again
+          </button>
+          <button
+            type="button"
+            data-testid="btn-ranking"
+            onClick={ () => history.push('/ranking') }
+          >
+            Ranking
+          </button>
+        </div>
       </div>
     );
   }

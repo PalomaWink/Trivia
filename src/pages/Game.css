@@ -1,25 +1,37 @@
 .game-container {
+  align-items: center;
   backdrop-filter: blur(10px);
-  background-color: blueviolet;
+  background-color: #212121;
   border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-  height: 450px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 465px;
   left: 50%;
   padding: 50px 35px;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
+  width: 450px;
 }
 
-.header-timer {
+.header {
   display: flex;
-  margin-bottom: 20px;
 }
 
 .timer h1 {
   color: white;
+}
+
+.qa-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  max-width: fit-content;
 }
 
 .game-category, .game-question {
@@ -31,14 +43,11 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 300px;
-  margin-bottom: 0;
+  max-height: 300px;
 }
 
 button {
-  align-items: center;
   appearance: none;
-  background-color: #fcfcfd;
   border-radius: 4px;
   border-width: 0;
   box-shadow: rgba(45, 35, 66, 0.8) 0 2px 4px , rgba(45, 35, 66, 0.6) 0 7px 13px -3px
@@ -46,25 +55,27 @@ button {
   box-sizing: border-box;
   color: #1f2133;
   cursor: pointer;
-  display: inline-flex;
   font-family: monospace;
   font-size: 18px;
+  font-weight: 600;
   height: 48px;
-  justify-content: center;
   line-height: 1;
   list-style: none;
   margin-top: 13px;
   overflow: hidden;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding: 10px 20px;
   position: relative;
-  text-align: left;
+  text-align: center;
   touch-action: manipulation;
   transition: box-shadow 0.15s , transform 0.15s;
   user-select: none;
-  white-space: wrap;
-  width: 60%;
+  white-space: normal;
   will-change: box-shadow , transform;
+}
+
+.answers-container > button {
+  max-height: 60px;
+  min-width: 200px;
 }
 
 button:hover {
@@ -83,6 +94,16 @@ button:active {
 }
 
 .next {
-  height: 40px;
-  width: 20%;
+  background-color: rgb(105, 36, 170);
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.8) 0 2px 4px , rgba(45, 35, 66, 0.6) 0 7px 13px -3px
+    #d6d6e7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  height: 45px;
+  margin-top: 20px;
+  width: 100px;
 }

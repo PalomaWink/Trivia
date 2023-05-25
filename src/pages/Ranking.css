@@ -1,4 +1,4 @@
-.feed-container {
+.rank-container {
   backdrop-filter: blur(10px);
   background-color: #212121;
   border: 2px solid rgba(255, 255, 255, 0.1);
@@ -14,17 +14,8 @@
   width: 400px;
 }
 
-.btn-container {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 70%;
-  justify-content: flex-end;
-}
-
 button {
   background-color: rgb(105, 36, 170);
   color: white;
   font-weight: 600;
-  width: 60%;
 }

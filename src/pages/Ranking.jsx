@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Ranking.css';
 import md5 from 'crypto-js/md5';
 import { connect } from 'react-redux';
 import { getSaved, savePlayer } from '../helpers/storage';
@@ -52,7 +53,7 @@ class Ranking extends Component {
     });
 
     return (
-      <div>
+      <div className="rank-container">
         <h1 data-testid="ranking-title">Ranking</h1>
         <ul>
           {players.map((playe, index) => (

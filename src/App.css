@@ -5,7 +5,9 @@
 }
 
 body {
-  background-color: #212121;
+
+  /* background-color: #212121; */
+  background-image: url('https://thumbs.gfycat.com/PresentGentleGreyhounddog-size_restricted.gif');
   height: 100vh;
   letter-spacing: 0.05em;
   width: 100vw;
@@ -22,7 +24,9 @@ body {
 
 .login {
   align-items: center;
-  background-color: blueviolet;
+
+  /* background-color: blueviolet; */
+  background-color: #212121;
   display: flex;
   flex-direction: column;
   height: 300px;
