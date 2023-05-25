@@ -7,6 +7,7 @@ import './Feedback.css';
 class Feedback extends Component {
   reset = () => {
     const { history } = this.props;
+
     history.push('/');
   };
 
