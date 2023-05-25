@@ -21,6 +21,7 @@
 input {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 5%;
+  color: rgb(229, 229, 229);
   display: block;
   font-size: 14px;
   font-weight: 300;
