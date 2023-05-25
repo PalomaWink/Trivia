@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './GenericPage.css';
+import './Settings.css';
 
 class Settings extends Component {
   render() {
     return (
-      <div>
+      <div className="settings-container">
         <h1
           data-testid="settings-title"
         >
