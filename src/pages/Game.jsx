@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
-import { getScore, saveAssertions } from '../Redux/Actions';
+import { getScore, saveAssertions, resetScore } from '../Redux/Actions';
 import './Game.css';
 
 class Game extends React.Component {
@@ -17,6 +17,8 @@ class Game extends React.Component {
   };
 
   async componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(resetScore(0));
     const token = localStorage.getItem('token');
     const { qIndex } = this.state;
     this.startCounter();
