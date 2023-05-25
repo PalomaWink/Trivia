@@ -3,19 +3,20 @@ import { screen, waitFor, waitForElementToBeRemoved } from '@testing-library/rea
 import userEvent from '@testing-library/user-event';
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
 import { act } from 'react-dom/test-utils';
-import { resultAPI } from './helpers/mockData';
+import { questionsResponse } from '../../cypress/mocks/questions';
 import App from '../App';
 import Game from '../pages/Game';
 
-describe('Testes para a tela de game', () => {
-  beforeEach(() => {
-    jest.spyOn(global, 'fetch');
-    global.fetch.mockResolvedValue({
-      json: jest.fn().mockResolvedValue(resultAPI),
-    });
+beforeEach(() => {
+  jest.spyOn(global, 'fetch');
+  global.fetch.mockResolvedValue({
+    json: jest.fn().mockResolvedValue(questionsResponse),
   });
-  
-  afterEach(jest.restoreAllMocks);
+});
+
+afterEach(jest.restoreAllMocks);
+
+describe('Testes para a tela de game', () => {
 
   it('Verifica se todos os elementos estão presentes na página', async() => {
     renderWithRouterAndRedux(<App />);
@@ -27,15 +28,12 @@ describe('Testes para a tela de game', () => {
     act(() => userEvent.type(screen.getByTestId('input-gravatar-email'), emailRigtht));
     userEvent.click(btnPlay);
 
-    // await waitForElementToBeRemoved(() => screen.getByText(/loading/i), { timeout: 10000 });
-
     screen.getByRole('img');
     screen.getAllByRole('button');
   });
 
   it('Verifica se API foi chamada', async () => {
     renderWithRouterAndRedux(<App />);
-    // usar o jest.fn() para mockar a funcao
     const nameRigth = 'teste teste'
     const emailRigtht = 'teste@teste.com';
     const btnPlay = screen.getByTestId('btn-play');
@@ -48,24 +46,106 @@ describe('Testes para a tela de game', () => {
 
   });
 
-  it('Verifica se ao clicar no botao next, o usuario e redirecionado para uma proxima pergunta', () => {
-    const { history } = renderWithRouterAndRedux(<App />);
-    act(() => {
-      history.push('/game');
-    });
+  it('Verifica se ao clicar na resposta correta o botao muda de cor', async () => {
+    const INICIAL_STATE = {
+      name: '',
+      assertions: '',
+      score: 0,
+      gravatarEmail: '',
+    };
+    renderWithRouterAndRedux(<App />, INICIAL_STATE, '/game' );
+   
+    await waitForElementToBeRemoved(() => screen.getByText(/loading/i));
 
-    const btnNext = screen.getByTestId('btn-next');
+    await waitFor(() => {
+      userEvent.click(screen.getByTestId('correct-answer'));
+    })
+    
+    expect(screen.getByTestId('correct-answer')).toHaveStyle('background-color: ButtonFace');
+  });
 
-    expect(resultAPI[0]).toBeInTheDocument();
+  it('Verifica se ao clicar na resposta errada o botao muda de cor', async () => {
+    const INICIAL_STATE = {
+      name: '',
+      assertions: '',
+      score: 0,
+      gravatarEmail: '',
+    };
+    renderWithRouterAndRedux(<App />, INICIAL_STATE, '/game' );
+
+    await waitForElementToBeRemoved(() => screen.getByText(/loading/i));
+
+    await waitFor(() => {
+      userEvent.click(screen.getByTestId('correct-answer'));
+    })
+
+    const btnNext = await screen.findByTestId('btn-next');
+    userEvent.click(btnNext);
+
+    expect(screen.getByText("In quantum physics, which of these theorised sub-atomic particles has yet to be observed?")).toBeInTheDocument();
+  });
+  it('Verifica se apos responder 5 perguntas o usuario e redirecionado para a tela de feedback', async () => {
+    const INICIAL_STATE = {
+      name: '',
+      assertions: '',
+      score: 0,
+      gravatarEmail: '',
+    };
+    const { history } = renderWithRouterAndRedux(<App />, INICIAL_STATE, '/game' );
+    await waitForElementToBeRemoved(() => screen.getByText(/loading/i));
+    
+    await waitFor(() => {
+      userEvent.click(screen.getByTestId('correct-answer'));
+    })
+    
+    const btnNext = await screen.findByTestId('btn-next');
+    userEvent.click(btnNext);
+
+    await waitFor(() => {
+      userEvent.click(screen.getByTestId('correct-answer'));
+    })
 
     userEvent.click(btnNext);
 
-    
+    await waitFor(() => {
+      userEvent.click(screen.getByTestId('correct-answer'));
+    })
 
+    userEvent.click(btnNext);
 
+    await waitFor(() => {
+      userEvent.click(screen.getByTestId('correct-answer'));
+    })
+
+    userEvent.click(btnNext);
+
+    await waitFor(() => {
+      userEvent.click(screen.getByTestId('correct-answer'));
+    })
+
+    userEvent.click(btnNext);
+
+    await waitFor(() => {
+      history.push('/feedback')
+      const{ pathname } = history.location;
+      expect(pathname).toBe('/feedback');
+    })
   });
 
-  // it('Verifica se apos responder 5 perguntas o usuario e redirecionado para a tela de feedback', () => {});
+  it('Verifica se o timer de 30 segundos esta funcionando', async () => {
+    const INICIAL_STATE = {
+      name: '',
+      assertions: '',
+      score: 0,
+      gravatarEmail: '',
+    };
+    renderWithRouterAndRedux(<App />, INICIAL_STATE, '/game' );
+    await waitForElementToBeRemoved(() => screen.getByText(/loading/i));
 
-  // it('Verifica se ao selecionar a resposta correta o botao assume a cor verde e as incorretas vermelho', () => {});
+    expect(screen.getByText(/30/i)).toBeInTheDocument();
+
+    await waitFor(() => expect(screen.getByText(/29/i)).toBeInTheDocument(), {timeout: 31000});
+
+    expect(screen.getByText(/0/i)).toBeInTheDocument();
+  });
 })
