@@ -5,6 +5,12 @@ import Header from '../components/Header';
 import './Feedback.css';
 
 class Feedback extends Component {
+  reset = () => {
+    const { history } = this.props;
+
+    history.push('/');
+  };
+
   render() {
     const { history, assertions, score } = this.props;
     const minimumScore = 3;

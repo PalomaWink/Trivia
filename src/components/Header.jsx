@@ -17,10 +17,43 @@ class Header extends Component {
     });
   }
 
+  componentDidUpdate() {
+    const { gravatarEmail, name, score } = this.props;
+    const hash = md5(gravatarEmail).toString();
+    const endPoint = `https://www.gravatar.com/avatar/${hash}`;
+
+    const dataR = {
+      nome: name,
+      ponto: score,
+      img: endPoint,
+    };
+    localStorage.setItem('dados', JSON.stringify(dataR));
+  /*   const data2 = JSON.parse(localStorage.getItem('dados')) || [];
+    data2.push(dataR);
+    if (data2) {
+      localStorage.setItem('dados', JSON.stringify(data2));
+    } */
+  }
+
   render() {
     const { name, score } = this.props;
     const { hash } = this.state;
     const endPoint = `https://www.gravatar.com/avatar/${hash}`;
+    /*    const dataR = {
+      nome: name,
+      ponto: score,
+      img: endPoint,
+    };
+    localStorage.setItem('data', JSON.stringify(dataR)); */
+
+    /*   let myItem = localStorage.getItem('data');
+
+    if (myItem === null || myItem === '') {
+      myItem = [];
+    } else {
+      myItem = JSON.parse(myItem);
+    }
+    myItem.push(dataR); */
 
     return (
       <div className="header-trivia">
