@@ -121,7 +121,7 @@ describe('Testes da tela de ranking', () => {
 
     localStorage.setItem('ranking', JSON.stringify(players))
 
-    const { history, debug } = renderWithRouterAndRedux(<App />, inicialState, '/ranking');
+    const { history } = renderWithRouterAndRedux(<App />, inicialState, '/ranking');
 
     await waitFor(() => {
       const { pathname } = history.location;
@@ -184,7 +184,7 @@ describe('Testes da tela de ranking', () => {
     const secondPlayerScore = screen.getByTestId('player-score-1').textContent;
 
     expect(parseInt(firstPlayerScore)).toBe(parseInt(secondPlayerScore));
-    debug();
+
   });
 
 })
