@@ -35,8 +35,7 @@ describe('Testes para a tela de game', () => {
       screen.getByTestId('header-score')
       screen.getByTestId('question-category')
     })
-    
-    screen.debug()
+
   });
 
   it('Verifica se API foi chamada', async () => {

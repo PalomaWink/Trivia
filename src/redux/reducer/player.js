@@ -1,4 +1,4 @@
-import { GET_SCORE, PLAYER_LOGIN, RESET_SCORE, SAVE_ASSERT } from '../Actions';
+import { GET_SCORE, PLAYER_LOGIN, RESET_SCORE, SAVE_ASSERT } from '../actions';
 
 const INICIAL_STATE = {
   name: '',

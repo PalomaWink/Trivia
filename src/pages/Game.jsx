@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
-import { getScore, saveAssertions, resetScore } from '../Redux/Actions';
+import { getScore, saveAssertions, resetScore } from '../redux/actions';
 import './Game.css';
 
 class Game extends React.Component {
@@ -41,9 +41,9 @@ class Game extends React.Component {
         '&uuml;': 'ü',
       };
       const replaced = data.results.map((element) => {
-        const question = element.question.replace(/&#?\w+;/g, (match) => entities[match] || match);
-        const correct = element.correct_answer.replace(/&#?\w+;/g, (match) => entities[match] || match);
-        const incorrect = element.incorrect_answers.map((elementTwo) => elementTwo.replace(/&#?\w+;/g, (match) => entities[match] || match));
+        const question = element.question.replace(/&#?\w+;/g, (match) => entities[match]);
+        const correct = element.correct_answer.replace(/&#?\w+;/g, (match) => entities[match]);
+        const incorrect = element.incorrect_answers.map((elementTwo) => elementTwo.replace(/&#?\w+;/g, (match) => entities[match]));
         return { ...element, question, correct, incorrect };
       });
       const answersArray = [{ correct: replaced[qIndex].correct_answer },
@@ -151,11 +151,8 @@ class Game extends React.Component {
     case 'medium':
       dispatch(getScore(standartPoints + (timeLeft * multiplierTwo)));
       break;
-    case 'hard':
-      dispatch(getScore(standartPoints + (timeLeft * multiplierThree)));
-      break;
     default:
-      return true;
+      dispatch(getScore(standartPoints + (timeLeft * multiplierThree)));
     }
     this.clickOn();
     this.correctAnswers();
