@@ -1,8 +1,7 @@
 import React from 'react';
-import { screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
-import { act } from 'react-dom/test-utils';
 import { questionsResponse } from '../../cypress/mocks/questions';
 import App from '../App';
 
@@ -140,6 +139,51 @@ describe('Testes da tela de ranking', () => {
     const secondPlayerScore = screen.getByTestId('player-score-1').textContent;
 
     expect(parseInt(firstPlayerScore)).toBeGreaterThan(parseInt(secondPlayerScore));
+    debug();
+  });
+
+  it('', async () => {
+    const inicialState = {
+      player: {
+        name: '',
+        assertions: '',
+        score: 0,
+        gravatarEmail: '',
+      }
+    }
+    const players = [
+      {
+        "nome": "Player1",
+        "ponto": 100,
+        "img": "https://www.gravatar.com/avatar/4f64c9f81bb0d4ee969aaf7b4a5a6f40"
+      },
+      {
+        "nome": "Player2",
+        "ponto": 100,
+        "img": "https://www.gravatar.com/avatar/d676af2c6c6aa5303d89104df10f417c"
+      }
+    ];
+
+    localStorage.setItem('ranking', JSON.stringify(players))
+
+    const { history, debug } = renderWithRouterAndRedux(<App />, inicialState, '/ranking');
+
+    await waitFor(() => {
+      const { pathname } = history.location;
+      expect(pathname).toBe('/ranking');
+    });
+
+    await screen.findByTestId('ranking-title')
+    const playerName = await screen.findAllByTestId(/player-name/i)
+    expect(playerName).toHaveLength(2);
+
+    const playerScore = await screen.findAllByTestId(/player-score/i)
+    expect(playerScore).toHaveLength(2);
+
+    const firstPlayerScore = screen.getByTestId('player-score-0').textContent;
+    const secondPlayerScore = screen.getByTestId('player-score-1').textContent;
+
+    expect(parseInt(firstPlayerScore)).toBe(parseInt(secondPlayerScore));
     debug();
   });
 

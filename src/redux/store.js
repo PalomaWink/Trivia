@@ -2,7 +2,7 @@ import { applyMiddleware, legacy_createStore as createStore } from 'redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
-import rootReducer from './Reducer/index';
+import rootReducer from './reducer/index';
 
 const store = createStore(
   rootReducer,

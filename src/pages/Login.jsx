@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { login } from '../Redux/Actions';
+import { login } from '../redux/actions';
 import './Login.css';
 import img from '../trivia.png';
 
