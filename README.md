@@ -69,4 +69,4 @@ Este projeto é para fins educacionais, portanto, pull requests não serão acei
 
 ## Licença
 
-Este projeto está licenciado sob a licença MIT.
+Este projeto está licenciado sob a licença MIT
